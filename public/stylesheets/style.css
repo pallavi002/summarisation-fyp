@@ -1,7 +1,70 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+  font-family: 'Merriweather', serif;
+  color: #181D31;
+  counter-reset: my-count;
+}
+nav {
+  font-weight: 900;
+}
+
+.text-para {
+  font-weight: 400;
 }
 
 a {
   color: #00B7FF;
+}
+
+.text-heading {
+  text-align: center;
+  padding-top: 0.7em;
+}
+
+/* steps */
+
+/* STEPS-SECTION */
+.steps-content {
+  padding: 4em 1em 1em 3em;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.sub-heading {
+  font-weight: 500;
+  font-size: 1.5em;
+  position: relative;
+}
+
+.sub-heading::before {
+  position: absolute;
+  counter-increment: my-count;
+  content: "*";
+  text-align: center;
+  color: #ffffff;
+  padding: 0.35em;
+  height: 35px;
+  width: 35px;
+  border-radius: 50px;
+  background-color: #678983;
+  left: -2.5em;
+  top: -0.25em;
+}
+
+.paragraph {
+  font-size: 1em;
+  margin-top: 1em;
+  margin-bottom: 0;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.paragraph::before {
+  position: absolute;
+  content: " ";
+  height: 150px;
+  width: 1px;
+  top: 0.65em;
+  left: -2.5em;
+  background-color: rgba(0, 0, 0, 0.2);
 }
