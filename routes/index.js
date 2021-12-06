@@ -17,10 +17,13 @@ router.post('/summarise', function (req, res) {
   const content = req.body.data;
 
   try {
-    fs.writeFileSync('./Output.txt', content)
+    fs.writeFileSync('./Output.txt', content);
+    // alert("Audio Saved Successfully!")
+    res.redirect('back')
     //file written successfully
   } catch (err) {
-    console.error(err)
+    console.error(err);
+    // res.redirect('back')
   }
 })
 

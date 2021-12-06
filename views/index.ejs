@@ -7,6 +7,8 @@
                 onchange="updateCountry()"></select>
             <select class="form-select bg-secondary text-light mt-2" id="select_dialect"></select>
         </div>
+        <button class="btn btn-success mt-3" id="start">Start</button>
+
         <form action="/summarise" method="post">
             <h2 class="mt-4 text-light">Transcript</h2>
             <div class="p-3" style="border: 1px solid gray; height: 300px; border-radius: 8px;">
@@ -14,7 +16,6 @@
                 <span id="interim" class="text-secondary"></span>
             </div>
             <div class="mt-4">
-                <button class="btn btn-success" id="start">Start</button>
                 <button class="btn btn-danger" id="stop" type="submit">Stop</button>
                 <p id="status" class="lead mt-3 text-light" style="display: none">Listenting ...</p>
             </div>
@@ -61,6 +62,8 @@
             };
             document.querySelector("#stop").onclick = () => {
                 speechRecognition.stop();
+                alert("Audio Saved Successfully!!")
+                // window.location.reload();
                 // let a = document.createElement('a');
                 // a.href = "data:application/octet-stream," + encodeURIComponent(final_transcript);
                 // // a.download = 'logs.txt';
@@ -78,15 +81,17 @@
         }
     </script>
     <script>
-        var langs =
-            [['English', ['en-AU', 'Australia'],
-                ['en-CA', 'Canada'],
-                ['en-IN', 'India'],
-                ['en-NZ', 'New Zealand'],
-                ['en-ZA', 'South Africa'],
-                ['en-GB', 'United Kingdom'],
-                ['en-US', 'United States']]
-            ];
+        // var langs =
+        //     [['English', ['en-AU', 'Australia'],
+        //         ['en-CA', 'Canada'],
+        //         ['en-IN', 'India'],
+        //         ['en-NZ', 'New Zealand'],
+        //         ['en-ZA', 'South Africa'],
+        //         ['en-GB', 'United Kingdom'],
+        //         ['en-US', 'United States']]
+        //     ];
+            var langs =
+            [['English', ['en-IN', 'India']]];
 
         let select_language = document.querySelector('#select_language');
         let select_dialect = document.querySelector('#select_dialect');
