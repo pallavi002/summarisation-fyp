@@ -1,5 +1,115 @@
 <%- include('./layout/header.ejs') %>
-    <h1>hiii</h1>
 
-<%- include('./layout/footer.ejs') %>
+    <body class="container pt-5 bg-dark">
+        <div class="mt-4" id="div_language">
+            <h2 class="mb-3 text-light">Select Language</h2>
+            <select class="form-select bg-secondary text-light" id="select_language"
+                onchange="updateCountry()"></select>
+            <select class="form-select bg-secondary text-light mt-2" id="select_dialect"></select>
+        </div>
+        <form action="/summarise" method="post">
+            <h2 class="mt-4 text-light">Transcript</h2>
+            <div class="p-3" style="border: 1px solid gray; height: 300px; border-radius: 8px;">
+                <input id="final" class="text-light" type="text" name="data" style="display: none;"></input>
+                <span id="interim" class="text-secondary"></span>
+            </div>
+            <div class="mt-4">
+                <button class="btn btn-success" id="start">Start</button>
+                <button class="btn btn-danger" id="stop" type="submit">Stop</button>
+                <p id="status" class="lead mt-3 text-light" style="display: none">Listenting ...</p>
+            </div>
+        </form>
+    </body>
+    <script>
+        if ("webkitSpeechRecognition" in window) {
+            let speechRecognition = new webkitSpeechRecognition();
+            let final_transcript = "";
 
+            speechRecognition.continuous = true;
+            speechRecognition.interimResults = true;
+            speechRecognition.lang = document.querySelector("#select_dialect").value;
+
+            speechRecognition.onstart = () => {
+                document.querySelector("#status").style.display = "block";
+            };
+            speechRecognition.onerror = () => {
+                document.querySelector("#status").style.display = "none";
+                console.log("Speech Recognition Error");
+            };
+            speechRecognition.onend = () => {
+                document.querySelector("#status").style.display = "none";
+                console.log("Speech Recognition Ended");
+            };
+
+            speechRecognition.onresult = (event) => {
+                let interim_transcript = "";
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        final_transcript += event.results[i][0].transcript;
+                    } else {
+                        interim_transcript += event.results[i][0].transcript;
+                    }
+                }
+                document.querySelector("#final").setAttribute("value", final_transcript);
+                document.querySelector("#final").innerHTML = final_transcript;
+                document.querySelector("#interim").innerHTML = interim_transcript;
+            };
+
+            document.querySelector("#start").onclick = () => {
+                speechRecognition.start();
+            };
+            document.querySelector("#stop").onclick = () => {
+                speechRecognition.stop();
+                // let a = document.createElement('a');
+                // a.href = "data:application/octet-stream," + encodeURIComponent(final_transcript);
+                // // a.download = 'logs.txt';
+                // a.writeln = 'logs.txt'
+                // a.click();
+
+
+                // $myfile = fopen("logs.txt", "a") || die("Unable to open file!");
+                // $txt = "user id date";
+                // fwrite($myfile, "\n".$txt);
+                // fclose($myfile);
+            };
+        } else {
+            console.log("Speech Recognition Not Available");
+        }
+    </script>
+    <script>
+        var langs =
+            [['English', ['en-AU', 'Australia'],
+                ['en-CA', 'Canada'],
+                ['en-IN', 'India'],
+                ['en-NZ', 'New Zealand'],
+                ['en-ZA', 'South Africa'],
+                ['en-GB', 'United Kingdom'],
+                ['en-US', 'United States']]
+            ];
+
+        let select_language = document.querySelector('#select_language');
+        let select_dialect = document.querySelector('#select_dialect');
+
+        for (var i = 0; i < langs.length; i++) {
+            select_language.options[i] = new Option(langs[i][0], i);
+        }
+
+        select_language.selectedIndex = 6;
+        updateCountry();
+        select_dialect.selectedIndex = 6;
+
+        function updateCountry() {
+            for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+                select_dialect.remove(i);
+            }
+            var list = langs[select_language.selectedIndex];
+            for (var i = 1; i < list.length; i++) {
+                select_dialect.options.add(new Option(list[i][1], list[i][0]));
+            }
+            select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+        }
+    </script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <%- include('./layout/footer.ejs') %>
