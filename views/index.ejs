@@ -86,24 +86,8 @@
                         <div class="col-4">
 
                         </div>
-                        <div class="row">
-                            <i class="fas fa-star mt-4"> <span style="size: 20px;">Get summary of your meeting Report.</span></i>
-                            <div class="col-3">
-                                <label class="custom-file-upload mt-3 btn"
-                                    style="width: 100%; background-color: #678983; color: white;">
-                                    <input type="file" style="display: none;" />
-                                    Upload File <i class="fas fa-upload"></i>
-                                </label>
-                            </div>
-                            <div class="col-3 mt-3">
-                                <button type="submit" class="btn"
-                                    style="width: 100%; background-color: #678983; color: white; margin-left: 0.4em;">Submit</button>
-                            </div>
-                        </div>
+
                     </div>
-
-
-                </div>
                 <!-- <h2 class="mt-4 text-light">Transcript</h2> -->
                 <div style="display: none;">
                     <input id="final" class="text-light" type="text" name="data" style="display: none;"></input>
@@ -111,6 +95,27 @@
                 </div>
 
                 </form>
+                <div class="row">
+                    <i class="fas fa-star mt-4"> <span style="size: 20px;">Get summary of your meeting Report.</span></i>
+                    <form action="/fileupload" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-3">
+                                <label class="custom-file-upload mt-3 btn"
+                                    style="width: 100%; background-color: #678983; color: white;">
+                                    <input type="file" style="display: none;"  name='fileUploaded'/>
+                                    Upload File <i class="fas fa-upload"></i>
+                                </label>
+                            </div>
+                            <div class="col-3 mt-3">
+                                <button type="submit" class="btn"
+                                    style="width: 100%; background-color: #678983; color: white; margin-left: 0.4em;">Submit File</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                </div>
+
             </div>
             <br><br>
         </div>

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const fs = require('fs');
+var formidable = require('formidable');
+const fs = require('fs', 'fs-extra');
 const { Translate } = require('@google-cloud/translate').v2;
 require('dotenv').config();
 
@@ -28,6 +29,20 @@ router.post('/summarise', function (req, res) {
     console.error(err);
     // res.redirect('back')
   }
+})
+
+router.post('/fileupload', function (req, res) {
+   var form = new formidable.IncomingForm();
+     //Formidable uploads to operating systems tmp dir by default
+     form.uploadDir = "./";       //set upload directory
+     form.keepExtensions = true;     //keep file extension
+ 
+     form.parse(req, function(err, fields, files) {
+        fs.rename('./invalid-name', './Output.txt', () => {
+          console.log("\nFile Renamed!\n");
+        });
+          res.redirect('back')
+     });
 })
 
 router.post('/summarisehindi', function (req, res) {
