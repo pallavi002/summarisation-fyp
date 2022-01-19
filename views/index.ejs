@@ -39,23 +39,32 @@
             <h1 class="text-heading">Summarize it !</h1>
             <div class="mt-4" id="div_language">
                 <div class="container">
-                    <h5 class="mb-3">Select Language</h5>
-                    <div class="row">
+                    <i class="fas fa-star mt-4"> <span style="size: 20px;">Select Language.</span></i>
+                    <div class="row mt-2">
                         <div class="col-6"> <select class="form-select" id="select_language"
                                 onchange="updateCountry()"></select>
                         </div>
                         <div class="col-6"><select class="form-select" id="select_dialect"></select></div>
 
                     </div>
-                    <div class="container">
+                    <div class="">
+                        <i class="fas fa-star mt-4"> <span style="size: 20px;">Record in Hindi.</span></i>
                         <form action="/summarisehindi" method="post">
                             <textarea type="text" name="hindidata" id="hindi_transcript" placeholder="Speak"
                                 class="keyboardInput" style="display: none;"></textarea>
-                            <input id="action" type="button" onclick="toggle()" value="Record in Hindi" />
-                            <button type="submit" class="btn">Submit Hindi Audio</button>
+                            <div class="row mt-2">
+                                <div class="col-3">
+                                    <input id="action" type="button" onclick="toggle()" value="Start Recording" style="width: 100%; background-color: #678983; color: white;" class="btn"/>
+                                </div>
+                                <div class="col-3">
+                                <button type="submit" class="btn" style="width: 100%; background-color: #678983; color: white;">Submit Hindi Audio</button>
+                                    
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="row">
+                        <i class="fas fa-star mt-4"> <span style="size: 20px;">Record in English</span></i>
                         <div class="col-3"><button class="btn mt-3" id="start"
                                 style="width: 100%; background-color: #678983; color: white;">Start Recording <i
                                     class="fas fa-microphone"></i></button></div>
@@ -64,7 +73,7 @@
                             <form action="/summarise" method="post">
                                 <input class="btn" id="stop"
                                     style="width: 100%; background-color: #678983; color: white;"
-                                    value="Stop Recording "></input><br>
+                                    value="Stop Recording "></input><br><br>
                                 <button class="btn" type="submit"
                                     style="width: 100%; background-color: #678983; color: white;">Submit</button>
 
@@ -78,6 +87,7 @@
 
                         </div>
                         <div class="row">
+                            <i class="fas fa-star mt-4"> <span style="size: 20px;">Get summary of your meeting Report.</span></i>
                             <div class="col-3">
                                 <label class="custom-file-upload mt-3 btn"
                                     style="width: 100%; background-color: #678983; color: white;">
