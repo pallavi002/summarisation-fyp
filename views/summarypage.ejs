@@ -1,0 +1,25 @@
+<%- include('./layout/header.ejs') %>    
+
+
+
+<script>
+        console.log("file data........", input)
+
+        predict(input)
+
+        tf.loadLayersModel('/model.json')
+            .then(function (model) {
+                window.model = model;
+            });
+        // Predict function
+        var predict = function (input) {
+            if (window.model) {
+                window.model.predict([tf.tensor(input).then(() => {
+                    decode_sequence(input.reshape(1, window.model.max_text_len))
+                })
+
+                ])
+            }
+        }
+</script>
+<%- include('./layout/footer.ejs') %>

@@ -41,9 +41,18 @@ router.post('/fileupload', function (req, res) {
         fs.rename('./invalid-name', './Output.txt', () => {
           console.log("\nFile Renamed!\n");
         });
-          res.redirect('back')
+          // res.redirect('back')
      });
+//read file
+     var fs  = require('fs');
+     var template_path = './Output.txt';
+     var temp = fs.readFileSync(template_path, 'utf8');
+     res.render('index', {
+       input: temp
+     })
 })
+
+
 
 router.post('/summarisehindi', function (req, res) {
   // Your credentials

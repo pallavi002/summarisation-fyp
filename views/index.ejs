@@ -54,11 +54,14 @@
                                 class="keyboardInput" style="display: none;"></textarea>
                             <div class="row mt-2">
                                 <div class="col-3">
-                                    <input id="action" type="button" onclick="toggle()" value="Start Recording" style="width: 100%; background-color: #678983; color: white;" class="btn"/>
+                                    <input id="action" type="button" onclick="toggle()" value="Start Recording"
+                                        style="width: 100%; background-color: #678983; color: white;" class="btn" />
                                 </div>
                                 <div class="col-3">
-                                <button type="submit" class="btn" style="width: 100%; background-color: #678983; color: white;">Submit Hindi Audio</button>
-                                    
+                                    <button type="submit" class="btn"
+                                        style="width: 100%; background-color: #678983; color: white;">Submit Hindi
+                                        Audio</button>
+
                                 </div>
                             </div>
                         </form>
@@ -88,31 +91,36 @@
                         </div>
 
                     </div>
-                <!-- <h2 class="mt-4 text-light">Transcript</h2> -->
-                <div style="display: none;">
-                    <input id="final" class="text-light" type="text" name="data" style="display: none;"></input>
-                    <span id="interim" class="text-secondary"></span>
-                </div>
+                    <!-- <h2 class="mt-4 text-light">Transcript</h2> -->
+                    <div style="display: none;">
+                        <input id="final" class="text-light" type="text" name="data" style="display: none;"></input>
+                        <span id="interim" class="text-secondary"></span>
+                    </div>
 
-                </form>
-                <div class="row">
-                    <i class="fas fa-star mt-4"> <span style="size: 20px;">Get summary of your meeting Report.</span></i>
-                    <form action="/fileupload" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-3">
-                                <label class="custom-file-upload mt-3 btn"
-                                    style="width: 100%; background-color: #678983; color: white;">
-                                    <input type="file" style="display: none;"  name='fileUploaded'/>
-                                    Upload File <i class="fas fa-upload"></i>
-                                </label>
-                            </div>
-                            <div class="col-3 mt-3">
-                                <button type="submit" class="btn"
-                                    style="width: 100%; background-color: #678983; color: white; margin-left: 0.4em;">Submit File</button>
-                            </div>
-                        </div>
                     </form>
-                </div>
+                    <div class="row">
+                        <i class="fas fa-star mt-4"> <span style="size: 20px;">Get summary of your meeting
+                                Report.</span></i>
+                        <form action="/fileupload" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label class="custom-file-upload mt-3 btn"
+                                        style="width: 100%; background-color: #678983; color: white;">
+                                        <input type="file" style="display: none;" name='fileUploaded' />
+                                        Upload File <i class="fas fa-upload"></i>
+                                    </label>
+                                </div>
+                                <div class="col-3 mt-3">
+                                    <button type="submit" class="btn"
+                                        style="width: 100%; background-color: #678983; color: white; margin-left: 0.4em;">Submit
+                                        File</button>
+                                </div>
+                                <button class="btn"
+                                    style="width: 100%; background-color: #678983; color: white; margin-left: 0.4em;"
+                                    onclick="generateSummary()">Generate Summary</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
 
@@ -238,12 +246,28 @@
                                 style="color: white"> ❤ </span>by Pallavi, Dikshita and Sumaiya.
                         </h4>
                     </div>
+
                 </div>
             </div>
         </footer>
     </div>
 
     </body>
+    <script>
+        function generateSummary() {
+            async function loadFileAndPrintToConsole(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.text();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+loadFileAndPrintToConsole('/Output.txt');
+        }
+    </script>
     <script>
         if ("webkitSpeechRecognition" in window) {
             let speechRecognition = new webkitSpeechRecognition();
