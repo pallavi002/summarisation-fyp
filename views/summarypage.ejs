@@ -1,0 +1,9 @@
+<%- include('./layout/header.ejs') %>  
+<div class="container mt-5" >
+    <h2 style="text-align: center;">Audio Summarised Successfully !!</h2><br>
+    <h5 style="text-align: center;">Summarised Accuracy: <%= accuracy %> %</h5>
+</div>  
+<a class="btn mt-5" id="summarydownload" href="data:text/plain;charset=UTF-8,<%= summary %>" download="summary">DOWNLOAD SUMMARISED REPORT</a>
+
+<!-- <h2><%= summary %></h2> -->
+<%- include('./layout/footer.ejs') %>
